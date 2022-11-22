@@ -1,14 +1,18 @@
 // ELEMENTOS
 const generatePasswordButton = document.querySelector("#generate-password")
 const generatedPasswordElement = document.querySelector("#generated-password")
-
+const cadastroBtn = document.getElementById("cadastro")
 const openCloseGeneratorButton = document.querySelector("#open-generate-password")
 const generatePasswordContainer = document.querySelector("#generate-options")
-const lengthInput = document.querySelector("#length");
-const lettersInput = document.querySelector("#letters");
-const numbersInput = document.querySelector("#numbers");
-const symbolsInput = document.querySelector("#symbols");
-const copyPasswordButton = document.querySelector("#copy-password");
+const lengthInput = document.querySelector("#length")
+const lettersInput = document.querySelector("#letters")
+const numbersInput = document.querySelector("#numbers")
+const symbolsInput = document.querySelector("#symbols")
+const copyPasswordButton = document.querySelector("#copy-password")
+const nome = document.getElementById('name')
+const email = document.getElementById("email")
+const senha = document.getElementById("password")
+const senhaConfirm = document.getElementById("confirmpassword")
   
 
 // FUNÇÕES
@@ -62,13 +66,28 @@ const generatePassword = (
             password += randomValue
         })
     }
-    
+
     password = password.slice(0, passwordLength)
 
     generatedPasswordElement.getElementsByClassName.display = "block"
     generatedPasswordElement.querySelector("h4").innerText = password
 }
 
+function clearField(){
+  nome.value = ""
+  email.value = ""
+  senha.value = ""
+  senhaConfirm.value = ""
+}
+function senhaConfirmacao(senha, senhaConfirm){
+  if(senha.value !== senhaConfirm.value){
+    alert("SENHA INCORRETA TENTE NOVAMENTE")
+    clearField()
+  } else{
+    alert("Usuario cadastrado com sucesso")
+    clearField()
+  }
+}
 
 // EVENTOS
 generatePasswordButton.addEventListener("click", () => {
@@ -95,4 +114,8 @@ openCloseGeneratorButton.addEventListener("click", () => {
         copyPasswordButton.innerText = "Copiar"
         }, 1000)
     })
+})
+
+cadastroBtn.addEventListener("click", () =>{
+    senhaConfirmacao(senha, senhaConfirm)
 })
